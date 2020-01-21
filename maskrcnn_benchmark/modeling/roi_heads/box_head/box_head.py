@@ -57,7 +57,6 @@ class ROIBoxHead(torch.nn.Module):
             box_regression = out_dict["bbox_deltas"]
         else:
             class_logits, box_regression = self.predictor(x)
-
         if not self.training:
             result = self.post_processor((class_logits, box_regression), proposals)
             if self.return_feats:

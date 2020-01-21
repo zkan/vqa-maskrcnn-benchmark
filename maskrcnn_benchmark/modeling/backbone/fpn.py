@@ -57,9 +57,9 @@ class FPN(nn.Module):
             inner_lateral = getattr(self, inner_block)(feature)
 
             # This is by upsampling by inferring lateral shape
-            #inner_top_down = F.interpolate(
-                #last_inner, size=inner_lateral.shape[-2:], mode="nearest"
-            #)
+            # inner_top_down = F.interpolate(
+            #     last_inner, size=inner_lateral.shape[-2:], mode="nearest"
+            # )
 
             #This is similar to caffe implementation
             inner_top_down = F.interpolate(last_inner, scale_factor=2, mode="nearest")
