@@ -31,7 +31,7 @@ class GeneralizedRCNN(nn.Module):
         self.roi_heads = build_roi_heads(cfg)
         self.return_feats = cfg.MODEL.ROI_BOX_HEAD.RETURN_FC_FEATS
 
-    def forward(self, images, targets=None):
+    def forward(self, images, targets=None, proposals=None):
         """
         Arguments:
             images (list[Tensor] or ImageList): images to be processed
@@ -48,7 +48,10 @@ class GeneralizedRCNN(nn.Module):
             raise ValueError("In training mode, targets should be passed")
         images = to_image_list(images)
         features = self.backbone(images.tensors)
-        proposals, proposal_losses = self.rpn(images, features, targets)
+        if proposals is None:
+            proposals, proposal_losses = self.rpn(images, features, targets)
+        else:
+            proposal_losses = {}
         if self.roi_heads:
             x, result, detector_losses = self.roi_heads(features, proposals, targets)
         else:

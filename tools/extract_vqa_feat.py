@@ -22,13 +22,13 @@ def main():
     parser = argparse.ArgumentParser(description="PyTorch Object Detection Inference")
     parser.add_argument(
         "--config-file",
-        default="configs/visual_genome_vqa/e2e_faster_rcnn_X-101-64x4d-FPN_1x_MLP_2048_FPN_512_vqa_single.yaml",
+        default="configs/visual_genome_vqa/e2e_faster_rcnn_X-152-32x8d-FPN_1x_MLP_2048_FPN_512_train.yaml",
         metavar="FILE",
         help="path to config file",
     )
     parser.add_argument(
         "--save_path",
-        default="/checkpoint/meetshah/features/vqa/pytorch/resnext101_64x4d_mlp_2048_fpn_512/",
+        default="/private/home/vedanuj/projects/vqa-maskrcnn-benchmark/checkpoints/resneXt152_8GPUs/inference/save/",
     )
     parser.add_argument(
         "--feat_name",
