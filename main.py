@@ -269,10 +269,7 @@ class PeriodontitisDemo(object):
 
         template = "{}: {:.2f}"
         for box, score, label in zip(boxes, scores, labels):
-            print(box, score, label)
             x, y = box[:2]
-            print(x, y)
-            print(x.item(), y.item())
             s = template.format(label, score)
             point = (int(x.item()), int(y.item()))
             cv2.putText(image, s, point, cv2.FONT_HERSHEY_SIMPLEX, .5, (255, 255, 255), 1)
